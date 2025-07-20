@@ -3,23 +3,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Clock, AlertTriangle, Users, FileText, BarChart3, Shield, ArrowRight, Play } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
 
 const Index = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
 
   const handleGetStarted = () => {
-    toast({
-      title: "Welcome to ComplyClear!",
-      description: "Redirecting to registration page...",
-    });
+    navigate('/register');
   };
 
   const handleLogin = () => {
-    toast({
-      title: "Login",
-      description: "Redirecting to login page...",
-    });
+    navigate('/login');
   };
 
   const handleWatchDemo = () => {
