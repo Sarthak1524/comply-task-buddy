@@ -14,7 +14,221 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clients: {
+        Row: {
+          id: string
+          created_at: string
+          updated_at: string
+          user_id: string
+          name: string
+          contact_person: string | null
+          email: string | null
+          phone: string | null
+          address: string | null
+          status: string
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          user_id: string
+          name: string
+          contact_person?: string | null
+          email?: string | null
+          phone?: string | null
+          address?: string | null
+          status?: string
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          user_id?: string
+          name?: string
+          contact_person?: string | null
+          email?: string | null
+          phone?: string | null
+          address?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clients_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      documents: {
+        Row: {
+          id: string
+          created_at: string
+          user_id: string
+          task_id: string | null
+          client_id: string | null
+          file_name: string
+          file_url: string
+          file_size: number | null
+          file_type: string | null
+          uploaded_by: string
+          description: string | null
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          user_id: string
+          task_id?: string | null
+          client_id?: string | null
+          file_name: string
+          file_url: string
+          file_size?: number | null
+          file_type?: string | null
+          uploaded_by: string
+          description?: string | null
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          user_id?: string
+          task_id?: string | null
+          client_id?: string | null
+          file_name?: string
+          file_url?: string
+          file_size?: number | null
+          file_type?: string | null
+          uploaded_by?: string
+          description?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "documents_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "documents_task_id_fkey"
+            columns: ["task_id"]
+            isOneToOne: false
+            referencedRelation: "tasks"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "documents_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      profiles: {
+        Row: {
+          id: string
+          created_at: string
+          updated_at: string
+          full_name: string | null
+          avatar_url: string | null
+          website: string | null
+          company_name: string | null
+          role: string | null
+        }
+        Insert: {
+          id: string
+          created_at?: string
+          updated_at?: string
+          full_name?: string | null
+          avatar_url?: string | null
+          website?: string | null
+          company_name?: string | null
+          role?: string | null
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          full_name?: string | null
+          avatar_url?: string | null
+          website?: string | null
+          company_name?: string | null
+          role?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      tasks: {
+        Row: {
+          id: string
+          created_at: string
+          updated_at: string
+          user_id: string
+          client_id: string
+          title: string
+          description: string | null
+          due_date: string | null
+          status: string
+          priority: string
+          assigned_to: string | null
+          completed_at: string | null
+          notes: string | null
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          user_id: string
+          client_id: string
+          title: string
+          description?: string | null
+          due_date?: string | null
+          status?: string
+          priority?: string
+          assigned_to?: string | null
+          completed_at?: string | null
+          notes?: string | null
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          updated_at?: string
+          user_id?: string
+          client_id?: string
+          title?: string
+          description?: string | null
+          due_date?: string | null
+          status?: string
+          priority?: string
+          assigned_to?: string | null
+          completed_at?: string | null
+          notes?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "tasks_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +237,9 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      task_status: "pending" | "in_progress" | "completed" | "overdue" | "cancelled"
+      task_priority: "low" | "medium" | "high" | "urgent"
+      client_status: "active" | "inactive" | "pending"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +366,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      task_status: ["pending", "in_progress", "completed", "overdue", "cancelled"] as const,
+      task_priority: ["low", "medium", "high", "urgent"] as const,
+      client_status: ["active", "inactive", "pending"] as const,
+    },
   },
 } as const
