@@ -81,7 +81,7 @@ const Index = () => {
                 <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in">
                   ComplyClear automates compliance tracking for global businesses. 
                   Streamline client tasks, document collection, and deadline management 
-                  with our intelligent platform.
+                  with our powerful, intuitive platform.
                 </p>
               </div>
               
@@ -293,7 +293,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Smart Reminders</h3>
               <p className="text-muted-foreground">
-                Automated alerts ensure no deadline is ever missed with intelligent reminder scheduling.
+                Automated alerts and smart scheduling ensure you never miss a deadline.
               </p>
             </div>
 
@@ -303,7 +303,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Enterprise Security</h3>
               <p className="text-muted-foreground">
-                Bank-grade security with end-to-end encryption for all your sensitive compliance data.
+                Bank-grade security with end-to-end encryption protects all your sensitive compliance data.
               </p>
             </div>
 
@@ -313,7 +313,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Advanced Analytics</h3>
               <p className="text-muted-foreground">
-                Detailed insights and reports to optimize your compliance performance and efficiency.
+                Comprehensive insights and reports help you optimize compliance performance and efficiency.
               </p>
             </div>
           </div>

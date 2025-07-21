@@ -110,7 +110,7 @@ All colors MUST be HSL.
 
 @layer base {
   .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
+    @apply transition-all duration-300 hover:scale-105;
   }
   
   .animate-fade-in {
@@ -121,6 +121,10 @@ All colors MUST be HSL.
     animation: scaleIn 0.6s ease-in-out;
   }
   
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-in-out;
+  }
+  
   .hover:shadow-glow {
     @apply hover:shadow-lg hover:shadow-primary/25;
   }
@@ -129,12 +133,31 @@ All colors MUST be HSL.
     background-image: radial-gradient(circle, hsl(var(--muted-foreground) / 0.15) 1px, transparent 1px);
     background-size: 20px 20px;
   }
+  
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .card-hover {
+    @apply hover:shadow-xl hover:shadow-primary/10 hover:-translate-y-1 transition-all duration-300;
+  }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
     opacity: 1;

@@ -197,7 +197,7 @@ const ClientsPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Clients</h1>
-          <p className="text-muted-foreground">Manage your client relationships and information.</p>
+          <p className="text-muted-foreground">Manage your client relationships, contact information, and business details.</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -357,10 +357,10 @@ const ClientsPage = () => {
       ) : filteredClients.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredClients.map((client) => (
-            <Card key={client.id} className="hover:shadow-lg transition-shadow">
+            <Card key={client.id} className="hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
               <CardHeader>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg">{client.name}</CardTitle>
+                  <CardTitle className="text-lg group-hover:text-primary transition-colors">{client.name}</CardTitle>
                   <Badge variant={
                     client.status === 'active' ? 'default' :
                     client.status === 'inactive' ? 'secondary' :
@@ -389,6 +389,7 @@ const ClientsPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="hover:scale-110 transition-transform"
                     onClick={() => handleEdit(client)}
                   >
                     <Edit className="h-4 w-4" />
@@ -396,6 +397,7 @@ const ClientsPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="hover:scale-110 transition-transform hover:border-destructive hover:text-destructive"
                     onClick={() => handleDelete(client.id)}
                   >
                     <Trash2 className="h-4 w-4" />

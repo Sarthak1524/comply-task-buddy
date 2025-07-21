@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { BarChart3, TrendingUp, Users, FileText, Clock, CheckCircle } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 
 const AnalyticsPage = () => {
   const { user } = useAuth();
@@ -62,19 +64,44 @@ const AnalyticsPage = () => {
   const completionRate = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
 
   // Task status distribution
+  const inProgressTasks = tasks?.filter(task => task.status === 'in_progress').length || 0;
+  
   const taskStatusData = [
-    { status: 'Completed', count: completedTasks, color: 'bg-success' },
-    { status: 'Pending', count: pendingTasks, color: 'bg-warning' },
-    { status: 'Overdue', count: overdueTasks, color: 'bg-destructive' },
-    { status: 'In Progress', count: tasks?.filter(task => task.status === 'in_progress').length || 0, color: 'bg-primary' },
+    { name: 'Completed', value: completedTasks, fill: 'hsl(var(--success))' },
+    { name: 'Pending', value: pendingTasks, fill: 'hsl(var(--warning))' },
+    { name: 'Overdue', value: overdueTasks, fill: 'hsl(var(--destructive))' },
+    { name: 'In Progress', value: inProgressTasks, fill: 'hsl(var(--primary))' },
   ];
 
   // Priority distribution
   const priorityData = [
-    { priority: 'Urgent', count: tasks?.filter(task => task.priority === 'urgent').length || 0, color: 'bg-destructive' },
-    { priority: 'High', count: tasks?.filter(task => task.priority === 'high').length || 0, color: 'bg-warning' },
-    { priority: 'Medium', count: tasks?.filter(task => task.priority === 'medium').length || 0, color: 'bg-primary' },
-    { priority: 'Low', count: tasks?.filter(task => task.priority === 'low').length || 0, color: 'bg-muted' },
+    { name: 'Urgent', value: tasks?.filter(task => task.priority === 'urgent').length || 0, fill: 'hsl(var(--destructive))' },
+    { name: 'High', value: tasks?.filter(task => task.priority === 'high').length || 0, fill: 'hsl(var(--warning))' },
+    { name: 'Medium', value: tasks?.filter(task => task.priority === 'medium').length || 0, fill: 'hsl(var(--primary))' },
+    { name: 'Low', value: tasks?.filter(task => task.priority === 'low').length || 0, fill: 'hsl(var(--muted-foreground))' },
+  ];
+
+  // Chart configuration
+  const chartConfig = {
+    value: {
+      label: "Tasks",
+    },
+    completed: {
+      label: "Completed",
+      color: "hsl(var(--success))",
+    },
+    pending: {
+      label: "Pending", 
+      color: "hsl(var(--warning))",
+    },
+    overdue: {
+      label: "Overdue",
+      color: "hsl(var(--destructive))",
+    },
+    inProgress: {
+      label: "In Progress",
+      color: "hsl(var(--primary))",
+    },
   ];
 
   return (
@@ -141,85 +168,113 @@ const AnalyticsPage = () => {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Task Status Distribution */}
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <CheckCircle className="h-5 w-5 text-primary" />
               <span>Task Status Distribution</span>
             </CardTitle>
-            <CardDescription>Breakdown of tasks by current status</CardDescription>
+            <CardDescription>Visual breakdown of all tasks by current status</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {taskStatusData.map((item) => (
-              <div key={item.status} className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                  <span className="text-sm font-medium">{item.status}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-muted-foreground">{item.count}</span>
-                  <div className="w-20 bg-muted rounded-full h-2">
-                    <div 
-                      className={`h-2 rounded-full ${item.color}`}
-                      style={{ width: `${totalTasks > 0 ? (item.count / totalTasks) * 100 : 0}%` }}
-                    ></div>
-                  </div>
+          <CardContent>
+            {totalTasks > 0 ? (
+              <ChartContainer config={chartConfig} className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={taskStatusData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={60}
+                      outerRadius={100}
+                      paddingAngle={2}
+                      dataKey="value"
+                    >
+                      {taskStatusData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                      ))}
+                    </Pie>
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                  </PieChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            ) : (
+              <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <CheckCircle className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <p>No tasks to display</p>
+                  <p className="text-sm">Create your first task to see analytics</p>
                 </div>
               </div>
-            ))}
+            )}
           </CardContent>
         </Card>
 
         {/* Priority Distribution */}
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <Clock className="h-5 w-5 text-primary" />
               <span>Task Priority Distribution</span>
             </CardTitle>
-            <CardDescription>Breakdown of tasks by priority level</CardDescription>
+            <CardDescription>Visual breakdown of all tasks by priority level</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            {priorityData.map((item) => (
-              <div key={item.priority} className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <div className={`w-3 h-3 rounded-full ${item.color}`}></div>
-                  <span className="text-sm font-medium">{item.priority}</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-muted-foreground">{item.count}</span>
-                  <div className="w-20 bg-muted rounded-full h-2">
-                    <div 
-                      className={`h-2 rounded-full ${item.color}`}
-                      style={{ width: `${totalTasks > 0 ? (item.count / totalTasks) * 100 : 0}%` }}
-                    ></div>
-                  </div>
+          <CardContent>
+            {totalTasks > 0 ? (
+              <ChartContainer config={chartConfig} className="h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={priorityData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                    <XAxis 
+                      dataKey="name" 
+                      stroke="hsl(var(--muted-foreground))"
+                      fontSize={12}
+                    />
+                    <YAxis 
+                      stroke="hsl(var(--muted-foreground))"
+                      fontSize={12}
+                    />
+                    <ChartTooltip content={<ChartTooltipContent />} />
+                    <Bar 
+                      dataKey="value" 
+                      radius={[4, 4, 0, 0]}
+                      fill="hsl(var(--primary))"
+                    />
+                  </BarChart>
+                </ResponsiveContainer>
+              </ChartContainer>
+            ) : (
+              <div className="h-[300px] flex items-center justify-center text-muted-foreground">
+                <div className="text-center">
+                  <Clock className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                  <p>No tasks to display</p>
+                  <p className="text-sm">Create your first task to see priority analytics</p>
                 </div>
               </div>
-            ))}
+            )}
           </CardContent>
         </Card>
       </div>
 
       {/* Performance Summary */}
-      <Card>
+      <Card className="hover:shadow-lg transition-all duration-300">
         <CardHeader>
           <CardTitle>Performance Summary</CardTitle>
-          <CardDescription>Key insights about your compliance management</CardDescription>
+          <CardDescription>Key insights and metrics about your compliance management performance</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="text-center p-4 bg-success/10 rounded-lg">
+            <div className="text-center p-6 bg-success/10 rounded-lg hover:bg-success/20 transition-colors cursor-pointer group">
               <div className="text-2xl font-bold text-success mb-2">{completedTasks}</div>
-              <p className="text-sm text-muted-foreground">Tasks Completed</p>
+              <p className="text-sm text-muted-foreground group-hover:text-success transition-colors">Tasks Completed</p>
             </div>
-            <div className="text-center p-4 bg-warning/10 rounded-lg">
+            <div className="text-center p-6 bg-warning/10 rounded-lg hover:bg-warning/20 transition-colors cursor-pointer group">
               <div className="text-2xl font-bold text-warning mb-2">{pendingTasks}</div>
-              <p className="text-sm text-muted-foreground">Tasks Pending</p>
+              <p className="text-sm text-muted-foreground group-hover:text-warning transition-colors">Tasks Pending</p>
             </div>
-            <div className="text-center p-4 bg-destructive/10 rounded-lg">
+            <div className="text-center p-6 bg-destructive/10 rounded-lg hover:bg-destructive/20 transition-colors cursor-pointer group">
               <div className="text-2xl font-bold text-destructive mb-2">{overdueTasks}</div>
-              <p className="text-sm text-muted-foreground">Tasks Overdue</p>
+              <p className="text-sm text-muted-foreground group-hover:text-destructive transition-colors">Tasks Overdue</p>
             </div>
           </div>
         </CardContent>

@@ -250,7 +250,7 @@ const TasksPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Tasks</h1>
-          <p className="text-muted-foreground">Manage compliance tasks and deadlines.</p>
+          <p className="text-muted-foreground">Manage compliance tasks, deadlines, and track progress efficiently.</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
@@ -492,10 +492,10 @@ const TasksPage = () => {
       ) : filteredTasks.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTasks.map((task) => (
-            <Card key={task.id} className="hover:shadow-lg transition-shadow">
+            <Card key={task.id} className="hover:shadow-lg transition-all duration-300 hover:scale-105 cursor-pointer group">
               <CardHeader>
                 <div className="flex items-start justify-between">
-                  <CardTitle className="text-lg line-clamp-2">{task.title}</CardTitle>
+                  <CardTitle className="text-lg line-clamp-2 group-hover:text-primary transition-colors">{task.title}</CardTitle>
                   <div className="flex flex-col gap-1">
                     <Badge variant={getStatusColor(task.status)}>
                       {task.status.replace('_', ' ')}
@@ -524,6 +524,7 @@ const TasksPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="hover:scale-110 transition-transform"
                     onClick={() => handleEdit(task)}
                   >
                     <Edit className="h-4 w-4" />
@@ -531,6 +532,7 @@ const TasksPage = () => {
                   <Button
                     variant="outline"
                     size="sm"
+                    className="hover:scale-110 transition-transform hover:border-destructive hover:text-destructive"
                     onClick={() => handleDelete(task.id)}
                   >
                     <Trash2 className="h-4 w-4" />

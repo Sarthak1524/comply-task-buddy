@@ -67,7 +67,7 @@ const DashboardPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back! Here's your compliance overview.</p>
+          <p className="text-muted-foreground">Welcome back! Here's your comprehensive compliance overview.</p>
         </div>
         <div className="flex space-x-2">
           <Button asChild>
@@ -134,18 +134,18 @@ const DashboardPage = () => {
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Recent Tasks */}
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <FileText className="h-5 w-5 text-primary" />
               <span>Recent Tasks</span>
             </CardTitle>
-            <CardDescription>Your latest compliance tasks</CardDescription>
+            <CardDescription>Your most recent compliance tasks and their current status</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             {recentTasks.length > 0 ? (
               recentTasks.map((task) => (
-                <div key={task.id} className="flex items-center justify-between p-3 bg-card rounded-lg border">
+                <div key={task.id} className="flex items-center justify-between p-3 bg-card rounded-lg border hover:bg-accent/50 transition-colors cursor-pointer">
                   <div className="flex items-center space-x-3">
                     <div className={`w-2 h-2 rounded-full ${
                       task.status === 'completed' ? 'bg-success' :
@@ -181,28 +181,28 @@ const DashboardPage = () => {
         </Card>
 
         {/* Quick Actions */}
-        <Card>
+        <Card className="hover:shadow-lg transition-all duration-300">
           <CardHeader>
             <CardTitle className="flex items-center space-x-2">
               <BarChart3 className="h-5 w-5 text-primary" />
               <span>Quick Actions</span>
             </CardTitle>
-            <CardDescription>Common tasks and shortcuts</CardDescription>
+            <CardDescription>Quick access to frequently used features and actions</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Button asChild className="w-full justify-start" variant="outline">
+            <Button asChild className="w-full justify-start hover:scale-105 transition-transform" variant="outline">
               <Link to="/clients">
                 <Users className="h-4 w-4 mr-2" />
                 Manage Clients
               </Link>
             </Button>
-            <Button asChild className="w-full justify-start" variant="outline">
+            <Button asChild className="w-full justify-start hover:scale-105 transition-transform" variant="outline">
               <Link to="/tasks">
                 <FileText className="h-4 w-4 mr-2" />
                 View All Tasks
               </Link>
             </Button>
-            <Button asChild className="w-full justify-start" variant="outline">
+            <Button asChild className="w-full justify-start hover:scale-105 transition-transform" variant="outline">
               <Link to="/analytics">
                 <BarChart3 className="h-4 w-4 mr-2" />
                 View Analytics
