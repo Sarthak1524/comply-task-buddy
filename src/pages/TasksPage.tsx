@@ -96,7 +96,7 @@ const TasksPage = () => {
         .insert([{ 
           ...values, 
           user_id: user?.id,
-          due_date: values.due_date?.toISOString(),
+          due_date: values.due_date?.toISOString() || null,
         }])
         .select()
         .single();
@@ -130,7 +130,7 @@ const TasksPage = () => {
         .from('tasks')
         .update({
           ...values,
-          due_date: values.due_date?.toISOString(),
+          due_date: values.due_date?.toISOString() || null,
           updated_at: new Date().toISOString(),
         })
         .eq('id', id)

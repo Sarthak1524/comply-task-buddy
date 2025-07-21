@@ -69,7 +69,11 @@ const ClientsPage = () => {
     mutationFn: async (values: ClientFormValues) => {
       const { data, error } = await supabase
         .from('clients')
-        .insert([{ ...values, user_id: user?.id }])
+        .insert([{ 
+          ...values, 
+          user_id: user?.id,
+          email: values.email || null,
+        }])
         .select()
         .single();
       

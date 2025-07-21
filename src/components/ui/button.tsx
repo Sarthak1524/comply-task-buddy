@@ -21,6 +21,8 @@ const buttonVariants = cva(
         hero: "bg-gradient-primary text-primary-foreground hover:shadow-elegant transform hover:scale-105 font-semibold",
         success: "bg-success text-success-foreground hover:bg-success/90",
         warning: "bg-warning text-warning-foreground hover:bg-warning/90",
+        success: "bg-success text-success-foreground hover:bg-success/90",
+        warning: "bg-warning text-warning-foreground hover:bg-warning/90",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -46,6 +46,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setLoading(false);
 
       if (event === 'SIGNED_IN') {
+        // Create profile if it doesn't exist
+        if (session?.user) {
+          const { error } = await supabase
+            .from('profiles')
+            .upsert({
+              id: session.user.id,
+              full_name: session.user.user_metadata?.full_name || '',
+              updated_at: new Date().toISOString(),
+            }, {
+              onConflict: 'id'
+            });
+          
+          if (error) {
+            console.error('Error creating/updating profile:', error);
+          }
+        }
         navigate('/dashboard');
       } else if (event === 'SIGNED_OUT') {
         navigate('/');
@@ -94,20 +110,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         variant: "destructive",
       });
       throw error;
-    }
-
-    // Create profile
-    const { error: profileError } = await supabase
-      .from('profiles')
-      .insert([
-        {
-          id: user?.id,
-          full_name: fullName,
-        },
-      ]);
-
-    if (profileError) {
-      console.error('Error creating profile:', profileError);
     }
 
     toast({
