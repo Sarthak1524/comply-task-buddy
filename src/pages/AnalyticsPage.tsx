@@ -238,7 +238,6 @@ export default function AnalyticsPage() {
                     <Bar 
                       dataKey="value" 
                       radius={[4, 4, 0, 0]}
-                      fill={(entry) => entry.color}
                     >
                       {priorityData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.color} />

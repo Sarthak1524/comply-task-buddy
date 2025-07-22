@@ -94,9 +94,14 @@ const TasksPage = () => {
       const { data, error } = await supabase
         .from('tasks')
         .insert([{ 
-          ...values, 
-          user_id: user?.id,
+          title: values.title,
+          description: values.description || null,
+          client_id: values.client_id,
           due_date: values.due_date?.toISOString() || null,
+          status: values.status,
+          priority: values.priority,
+          notes: values.notes || null,
+          user_id: user?.id!,
         }])
         .select()
         .single();

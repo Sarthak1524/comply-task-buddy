@@ -70,9 +70,13 @@ const ClientsPage = () => {
       const { data, error } = await supabase
         .from('clients')
         .insert([{ 
-          ...values, 
-          user_id: user?.id,
+          name: values.name,
+          contact_person: values.contact_person || null,
           email: values.email || null,
+          phone: values.phone || null,
+          address: values.address || null,
+          status: values.status,
+          user_id: user?.id!,
         }])
         .select()
         .single();
