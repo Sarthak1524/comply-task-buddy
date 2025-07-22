@@ -313,7 +313,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Advanced Analytics</h3>
               <p className="text-muted-foreground">
-                Comprehensive insights and reports help you optimize compliance performance and efficiency.
+                Comprehensive insights and detailed reports help you optimize compliance performance and operational efficiency.
               </p>
             </div>
           </div>

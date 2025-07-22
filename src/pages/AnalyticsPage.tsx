@@ -207,7 +207,7 @@ export default function AnalyticsPage() {
           <CardHeader>
             <CardTitle>Priority Distribution</CardTitle>
             <CardDescription>
-              Task priority levels across your compliance portfolio
+              Distribution of task priority levels across your compliance portfolio
             </CardDescription>
           </CardHeader>
           <CardContent>

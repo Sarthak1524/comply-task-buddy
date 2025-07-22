@@ -67,7 +67,7 @@ const RegisterPage = () => {
         <Card>
           <CardHeader>
             <CardTitle>Get started</CardTitle>
-            <CardDescription>Create your account to start managing compliance</CardDescription>
+            <CardDescription>Create your account to start managing compliance efficiently</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>

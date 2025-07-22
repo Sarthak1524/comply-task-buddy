@@ -94,7 +94,7 @@ const DashboardPage = () => {
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-success">{completedTasks}</div>
-            <p className="text-xs text-muted-foreground">Tasks completed this month</p>
+            <p className="text-xs text-muted-foreground">Successfully completed tasks</p>
           </CardContent>
         </Card>
 

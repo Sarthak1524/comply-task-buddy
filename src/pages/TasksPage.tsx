@@ -266,7 +266,7 @@ const TasksPage = () => {
             <DialogHeader>
               <DialogTitle>{editingTask ? 'Edit Task' : 'Add New Task'}</DialogTitle>
               <DialogDescription>
-                {editingTask ? 'Update task information.' : 'Create a new compliance task.'}
+                {editingTask ? 'Update task information and details.' : 'Create a new compliance task with deadlines and priorities.'}
               </DialogDescription>
             </DialogHeader>
             <Form {...form}>

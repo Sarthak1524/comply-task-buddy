@@ -213,7 +213,7 @@ const ClientsPage = () => {
             <DialogHeader>
               <DialogTitle>{editingClient ? 'Edit Client' : 'Add New Client'}</DialogTitle>
               <DialogDescription>
-                {editingClient ? 'Update client information.' : 'Add a new client to your compliance management system.'}
+                {editingClient ? 'Update client information and details.' : 'Add a new client to your compliance management system.'}
               </DialogDescription>
             </DialogHeader>
             <Form {...form}>
