@@ -30,6 +30,20 @@ export function Layout({ children }: LayoutProps) {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Sign out error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to sign out. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -62,7 +76,7 @@ export function Layout({ children }: LayoutProps) {
 
               <div className="p-4 border-t">
                 <Button
-                  onClick={signOut}
+                  onClick={handleSignOut}
                   variant="ghost"
                   className="w-full justify-start text-gray-600 hover:text-gray-900"
                 >

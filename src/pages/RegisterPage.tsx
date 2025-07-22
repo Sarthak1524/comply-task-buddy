@@ -42,6 +42,7 @@ const RegisterPage = () => {
       await signUp(values.email, values.password, values.fullName);
     } catch (error) {
       console.error('Registration error:', error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -58,7 +59,7 @@ const RegisterPage = () => {
           <h2 className="mt-6 text-3xl font-bold text-foreground">Create your account</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Already have an account?{' '}
-            <Link to="/login" className="font-medium text-primary hover:text-primary/80">
+            <Link to="/login" className="font-medium text-primary hover:text-primary/80 underline underline-offset-4">
               Sign in
             </Link>
           </p>
@@ -67,7 +68,7 @@ const RegisterPage = () => {
         <Card>
           <CardHeader>
             <CardTitle>Get started</CardTitle>
-            <CardDescription>Create your account to start managing compliance efficiently</CardDescription>
+            <CardDescription>Create your account to start managing compliance</CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>

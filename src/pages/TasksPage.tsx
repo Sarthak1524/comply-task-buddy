@@ -250,7 +250,7 @@ const TasksPage = () => {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-foreground">Tasks</h1>
-          <p className="text-muted-foreground">Manage compliance tasks, deadlines, and track progress efficiently.</p>
+          <p className="text-muted-foreground">Manage compliance tasks, monitor deadlines, and track progress.</p>
         </div>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>

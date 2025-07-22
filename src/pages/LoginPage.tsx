@@ -35,6 +35,7 @@ const LoginPage = () => {
       await signIn(values.email, values.password);
     } catch (error) {
       console.error('Login error:', error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -51,7 +52,7 @@ const LoginPage = () => {
           <h2 className="mt-6 text-3xl font-bold text-foreground">Sign in to your account</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Don't have an account?{' '}
-            <Link to="/register" className="font-medium text-primary hover:text-primary/80 underline">
+            <Link to="/register" className="font-medium text-primary hover:text-primary/80 underline underline-offset-4">
               Sign up
             </Link>
           </p>

@@ -70,8 +70,8 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-8 animate-fade-in">
               <div className="space-y-4">
-                <Badge variant="secondary" className="text-primary animate-scale-in">
-                  SaaS Compliance Platform
+                <Badge variant="secondary" className="text-primary animate-scale-in hover:bg-primary/10 transition-colors">
+                  Professional Compliance Platform
                 </Badge>
                 <h1 className="text-5xl font-bold text-foreground leading-tight animate-fade-in">
                   Never Miss a
@@ -80,7 +80,7 @@ const Index = () => {
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in">
                   ComplyClear automates compliance tracking for global businesses. 
-                  Streamline client tasks, document collection, and deadline management 
+                  Streamline client tasks, document collection, and deadline management
                   with our powerful, intuitive platform.
                 </p>
               </div>
@@ -291,9 +291,9 @@ const Index = () => {
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-glow">
                 <Clock className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
               </div>
-              <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Smart Reminders</h3>
+              <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Intelligent Reminders</h3>
               <p className="text-muted-foreground">
-                Automated alerts and smart scheduling ensure you never miss a deadline.
+                Automated alerts and intelligent scheduling ensure you never miss a deadline.
               </p>
             </div>
 
@@ -301,9 +301,9 @@ const Index = () => {
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300 group-hover:shadow-glow">
                 <Shield className="h-6 w-6 text-primary group-hover:scale-110 transition-transform" />
               </div>
-              <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Enterprise Security</h3>
+              <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Bank-Level Security</h3>
               <p className="text-muted-foreground">
-                Bank-grade security with end-to-end encryption protects all your sensitive compliance data.
+                Bank-level security with end-to-end encryption protects all your sensitive compliance data.
               </p>
             </div>
 
@@ -313,7 +313,7 @@ const Index = () => {
               </div>
               <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">Advanced Analytics</h3>
               <p className="text-muted-foreground">
-                Comprehensive insights and detailed reports help you optimize compliance performance and operational efficiency.
+                Comprehensive insights and detailed reports help you optimize compliance performance.
               </p>
             </div>
           </div>
