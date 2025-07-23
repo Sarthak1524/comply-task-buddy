@@ -16,40 +16,40 @@ export type Database = {
     Tables: {
       clients: {
         Row: {
-          id: string
+          address: string | null
+          contact_person: string | null
           created_at: string
+          email: string | null
+          id: string
+          name: string
+          phone: string | null
+          status: Database["public"]["Enums"]["client_status"]
           updated_at: string
           user_id: string
-          name: string
-          contact_person: string | null
-          email: string | null
-          phone: string | null
-          address: string | null
-          status: string
         }
         Insert: {
-          id?: string
+          address?: string | null
+          contact_person?: string | null
           created_at?: string
+          email?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          status?: Database["public"]["Enums"]["client_status"]
           updated_at?: string
           user_id: string
-          name: string
-          contact_person?: string | null
-          email?: string | null
-          phone?: string | null
-          address?: string | null
-          status?: string
         }
         Update: {
-          id?: string
+          address?: string | null
+          contact_person?: string | null
           created_at?: string
+          email?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          status?: Database["public"]["Enums"]["client_status"]
           updated_at?: string
           user_id?: string
-          name?: string
-          contact_person?: string | null
-          email?: string | null
-          phone?: string | null
-          address?: string | null
-          status?: string
         }
         Relationships: [
           {
@@ -58,55 +58,55 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       documents: {
         Row: {
-          id: string
-          created_at: string
-          user_id: string
-          task_id: string | null
           client_id: string | null
+          created_at: string
+          description: string | null
           file_name: string
-          file_url: string
           file_size: number | null
           file_type: string | null
+          file_url: string
+          id: string
+          task_id: string | null
           uploaded_by: string
-          description: string | null
+          user_id: string
         }
         Insert: {
-          id?: string
-          created_at?: string
-          user_id: string
-          task_id?: string | null
           client_id?: string | null
+          created_at?: string
+          description?: string | null
           file_name: string
-          file_url: string
           file_size?: number | null
           file_type?: string | null
+          file_url: string
+          id?: string
+          task_id?: string | null
           uploaded_by: string
-          description?: string | null
+          user_id: string
         }
         Update: {
-          id?: string
-          created_at?: string
-          user_id?: string
-          task_id?: string | null
           client_id?: string | null
+          created_at?: string
+          description?: string | null
           file_name?: string
-          file_url?: string
           file_size?: number | null
           file_type?: string | null
+          file_url?: string
+          id?: string
+          task_id?: string | null
           uploaded_by?: string
-          description?: string | null
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "documents_user_id_fkey"
-            columns: ["user_id"]
+            foreignKeyName: "documents_client_id_fkey"
+            columns: ["client_id"]
             isOneToOne: false
-            referencedRelation: "profiles"
+            referencedRelation: "clients"
             referencedColumns: ["id"]
           },
           {
@@ -117,102 +117,101 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "documents_client_id_fkey"
-            columns: ["client_id"]
+            foreignKeyName: "documents_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
-            referencedRelation: "clients"
+            referencedRelation: "profiles"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
       profiles: {
         Row: {
-          id: string
-          created_at: string
-          updated_at: string
-          full_name: string | null
           avatar_url: string | null
-          website: string | null
           company_name: string | null
+          created_at: string
+          full_name: string | null
+          id: string
           role: string | null
+          updated_at: string
+          website: string | null
         }
         Insert: {
-          id: string
-          created_at?: string
-          updated_at?: string
-          full_name?: string | null
           avatar_url?: string | null
-          website?: string | null
           company_name?: string | null
+          created_at?: string
+          full_name?: string | null
+          id: string
           role?: string | null
+          updated_at?: string
+          website?: string | null
         }
         Update: {
-          id?: string
-          created_at?: string
-          updated_at?: string
-          full_name?: string | null
           avatar_url?: string | null
-          website?: string | null
           company_name?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
           role?: string | null
+          updated_at?: string
+          website?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
-        ]
+        Relationships: []
       }
       tasks: {
         Row: {
-          id: string
-          created_at: string
-          updated_at: string
-          user_id: string
+          assigned_to: string | null
           client_id: string
-          title: string
+          completed_at: string | null
+          created_at: string
           description: string | null
           due_date: string | null
-          status: string
-          priority: string
-          assigned_to: string | null
-          completed_at: string | null
+          id: string
           notes: string | null
+          priority: Database["public"]["Enums"]["task_priority"]
+          status: Database["public"]["Enums"]["task_status"]
+          title: string
+          updated_at: string
+          user_id: string
         }
         Insert: {
-          id?: string
+          assigned_to?: string | null
+          client_id: string
+          completed_at?: string | null
           created_at?: string
+          description?: string | null
+          due_date?: string | null
+          id?: string
+          notes?: string | null
+          priority?: Database["public"]["Enums"]["task_priority"]
+          status?: Database["public"]["Enums"]["task_status"]
+          title: string
           updated_at?: string
           user_id: string
-          client_id: string
-          title: string
-          description?: string | null
-          due_date?: string | null
-          status?: string
-          priority?: string
-          assigned_to?: string | null
-          completed_at?: string | null
-          notes?: string | null
         }
         Update: {
-          id?: string
-          created_at?: string
-          updated_at?: string
-          user_id?: string
+          assigned_to?: string | null
           client_id?: string
-          title?: string
+          completed_at?: string | null
+          created_at?: string
           description?: string | null
           due_date?: string | null
-          status?: string
-          priority?: string
-          assigned_to?: string | null
-          completed_at?: string | null
+          id?: string
           notes?: string | null
+          priority?: Database["public"]["Enums"]["task_priority"]
+          status?: Database["public"]["Enums"]["task_status"]
+          title?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "tasks_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "tasks_user_id_fkey"
             columns: ["user_id"]
@@ -220,13 +219,6 @@ export type Database = {
             referencedRelation: "profiles"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "tasks_client_id_fkey"
-            columns: ["client_id"]
-            isOneToOne: false
-            referencedRelation: "clients"
-            referencedColumns: ["id"]
-          }
         ]
       }
     }
@@ -237,9 +229,14 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      task_status: "pending" | "in_progress" | "completed" | "overdue" | "cancelled"
-      task_priority: "low" | "medium" | "high" | "urgent"
       client_status: "active" | "inactive" | "pending"
+      task_priority: "low" | "medium" | "high" | "urgent"
+      task_status:
+        | "pending"
+        | "in_progress"
+        | "completed"
+        | "overdue"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -367,9 +364,15 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      task_status: ["pending", "in_progress", "completed", "overdue", "cancelled"] as const,
-      task_priority: ["low", "medium", "high", "urgent"] as const,
-      client_status: ["active", "inactive", "pending"] as const,
+      client_status: ["active", "inactive", "pending"],
+      task_priority: ["low", "medium", "high", "urgent"],
+      task_status: [
+        "pending",
+        "in_progress",
+        "completed",
+        "overdue",
+        "cancelled",
+      ],
     },
   },
 } as const
