@@ -74,14 +74,12 @@ const Index = () => {
                   Professional Compliance Platform
                 </Badge>
                 <h1 className="text-5xl font-bold text-foreground leading-tight animate-fade-in">
-                  Never Miss a
-                  <span className="text-primary bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent"> Compliance </span>
-                  Deadline Again
+                  Track compliance effortlessly with
+                  <span className="text-primary bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent"> ComplyClear</span>
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed animate-fade-in">
-                  ComplyClear automates compliance tracking for global businesses. 
-                  Streamline client tasks, document collection, and deadline management
-                  with our powerful, intuitive platform.
+                  ComplyClear makes it easy to assign, monitor, and complete client compliance tasks. 
+                  Whether you're an agency or a firm, ensure nothing slips through the cracks.
                 </p>
               </div>
               
