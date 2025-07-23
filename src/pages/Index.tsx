@@ -90,7 +90,7 @@ const Index = () => {
                   className="text-base hover-scale group transition-all duration-300 hover:shadow-glow"
                   onClick={handleGetStarted}
                 >
-                  Start Free Trial
+                  Get Started for Free
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
                 <Button 
