@@ -5,6 +5,7 @@ import { CheckCircle, Clock, AlertTriangle, Users, FileText, BarChart3, Shield, 
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-image.jpg";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   const { toast } = useToast();
@@ -26,10 +27,7 @@ const Index = () => {
   };
 
   const handleContactSales = () => {
-    toast({
-      title: "Contact Sales",
-      description: "Opening contact form...",
-    });
+    navigate('/contact');
   };
 
   const scrollToFeatures = () => {
@@ -37,10 +35,7 @@ const Index = () => {
   };
 
   const scrollToPricing = () => {
-    toast({
-      title: "Pricing",
-      description: "Redirecting to pricing page...",
-    });
+    navigate('/pricing');
   };
 
   return (
@@ -318,6 +313,146 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="py-20 bg-card/30">
+        <div className="container mx-auto px-6">
+          <div className="text-center space-y-4 mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold text-foreground">
+              Trusted by Leading Organizations
+            </h2>
+            <p className="text-xl text-muted-foreground">
+              See what our customers have to say about ComplyClear
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-500 hover-scale">
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <CheckCircle key={i} className="h-4 w-4 text-warning fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic">
+                    "ComplyClear transformed our compliance process. We went from missing deadlines to being ahead of schedule consistently. The automation features are game-changing."
+                  </p>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-sm font-semibold text-primary">SM</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">Sarah Mitchell</div>
+                      <div className="text-sm text-muted-foreground">Compliance Director, TechCorp</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-500 hover-scale">
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <CheckCircle key={i} className="h-4 w-4 text-warning fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic">
+                    "The real-time analytics and reporting capabilities have given us unprecedented visibility into our compliance status. It's like having a compliance expert on our team 24/7."
+                  </p>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-sm font-semibold text-primary">MJ</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">Michael Johnson</div>
+                      <div className="text-sm text-muted-foreground">CEO, GrowthLaw Partners</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-500 hover-scale">
+              <CardContent className="p-6">
+                <div className="space-y-4">
+                  <div className="flex space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <CheckCircle key={i} className="h-4 w-4 text-warning fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-muted-foreground italic">
+                    "We reduced our compliance overhead by 60% while improving accuracy. The client portal has been a huge hit with our customers who love the transparency."
+                  </p>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                      <span className="text-sm font-semibold text-primary">LW</span>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-foreground">Lisa Wong</div>
+                      <div className="text-sm text-muted-foreground">Operations Manager, FinanceFirst</div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="text-center space-y-4 mb-16 animate-fade-in">
+            <h2 className="text-4xl font-bold text-foreground">
+              Frequently Asked Questions
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Get answers to the most common questions about ComplyClear
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-6">
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-300 hover-scale">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-3 text-foreground">How secure is ComplyClear?</h3>
+                <p className="text-muted-foreground">
+                  ComplyClear uses bank-level security with 256-bit SSL encryption, SOC 2 Type II compliance, and regular security audits. Your data is stored in secure, GDPR-compliant data centers.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-300 hover-scale">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-3 text-foreground">Can ComplyClear integrate with our existing systems?</h3>
+                <p className="text-muted-foreground">
+                  Yes! ComplyClear offers pre-built integrations with popular accounting software, CRM systems, and document management platforms. We also provide a robust API for custom integrations.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-300 hover-scale">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-3 text-foreground">How quickly can we get set up?</h3>
+                <p className="text-muted-foreground">
+                  Most teams are up and running within 24 hours. Our onboarding team will help you import your existing data and configure the platform to match your workflows.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="shadow-card hover:shadow-elegant transition-all duration-300 hover-scale">
+              <CardContent className="p-6">
+                <h3 className="text-lg font-semibold mb-3 text-foreground">What kind of support do you offer?</h3>
+                <p className="text-muted-foreground">
+                  We provide comprehensive support including email, live chat, phone support, and a detailed knowledge base. Enterprise customers get access to a dedicated account manager.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary-glow/5 to-primary/5"></div>
@@ -352,20 +487,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-card border-t py-12 animate-fade-in">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2 hover-scale cursor-pointer group">
-              <Shield className="h-6 w-6 text-primary group-hover:scale-110 transition-transform animate-pulse" />
-              <span className="text-lg font-semibold group-hover:text-primary transition-colors">ComplyClear</span>
-            </div>
-            <p className="text-sm text-muted-foreground">
-              © 2024 ComplyClear. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
